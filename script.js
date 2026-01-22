@@ -351,7 +351,7 @@ function exportarTXT() {
 
   let conteudo = "Resumo de chamados por analista\n\n";
 
-  // Mantém a coleta de quantidade por analista
+
   Object.entries(chamadosPorTecnico)
     .sort((a, b) => b[1] - a[1])
     .forEach(([analista, qtd]) => {
@@ -360,7 +360,7 @@ function exportarTXT() {
 
   conteudo += "\n";
 
-  // Filtra os chamados conforme o analista selecionado
+ 
   let listaFiltrada = chamados;
 
   if (tecnicoSelecionado !== "TODOS") {
@@ -369,7 +369,7 @@ function exportarTXT() {
     );
   }
 
-  // Agrupa por analista (já filtrado)
+ 
   const chamadosAgrupados = {};
 
   listaFiltrada.forEach((c) => {
@@ -379,7 +379,7 @@ function exportarTXT() {
     chamadosAgrupados[c.tecnico].push(c);
   });
 
-  // Gera o TXT apenas do(s) analista(s) filtrado(s)
+  
   Object.keys(chamadosAgrupados)
     .sort()
     .forEach((analista) => {
