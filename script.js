@@ -351,7 +351,7 @@ function exportarTXT() {
 
   let conteudo = "Resumo de chamados por analista\n\n";
 
-  // Usa a coleta já existente
+  // Mantém a coleta de quantidade por analista
   Object.entries(chamadosPorTecnico)
     .sort((a, b) => b[1] - a[1])
     .forEach(([analista, qtd]) => {
@@ -360,17 +360,26 @@ function exportarTXT() {
 
   conteudo += "\n";
 
-  // Agrupa chamados por analista
+  // Filtra os chamados conforme o analista selecionado
+  let listaFiltrada = chamados;
+
+  if (tecnicoSelecionado !== "TODOS") {
+    listaFiltrada = chamados.filter(
+      (c) => c.tecnico === tecnicoSelecionado
+    );
+  }
+
+  // Agrupa por analista (já filtrado)
   const chamadosAgrupados = {};
 
-  chamados.forEach((c) => {
+  listaFiltrada.forEach((c) => {
     if (!chamadosAgrupados[c.tecnico]) {
       chamadosAgrupados[c.tecnico] = [];
     }
     chamadosAgrupados[c.tecnico].push(c);
   });
 
-  // Ordena analistas por nome
+  // Gera o TXT apenas do(s) analista(s) filtrado(s)
   Object.keys(chamadosAgrupados)
     .sort()
     .forEach((analista) => {
@@ -395,8 +404,11 @@ function exportarTXT() {
 
   const a = document.createElement("a");
   a.href = url;
-  a.download = "chamados_por_analista.txt";
-  a.click();
+  a.download =
+    tecnicoSelecionado === "TODOS"
+      ? "chamados_por_analista.txt"
+      : `chamados_${tecnicoSelecionado.replace(/\s+/g, "_")}.txt`;
 
+  a.click();
   URL.revokeObjectURL(url);
 }
