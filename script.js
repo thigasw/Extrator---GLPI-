@@ -333,7 +333,7 @@ function atualizarTabelaTecnicos() {
     .sort((a, b) => b[1] - a[1]);
 
   let html = `
-    <h2>Quantidade de chamados por técnico</h2>
+    <h2>Quantidade de chamados por Analista</h2>
     <table style="width:100%; border-collapse:collapse;">
       <thead style="background:#e5e7eb;">
         <tr>
