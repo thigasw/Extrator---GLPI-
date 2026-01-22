@@ -351,32 +351,52 @@ function exportarTXT() {
 
   let conteudo = "Resumo de chamados por analista\n\n";
 
+  // Usa a coleta já existente
   Object.entries(chamadosPorTecnico)
     .sort((a, b) => b[1] - a[1])
-    .forEach(([tec, qtd]) => {
-      conteudo += `${tec}: ${qtd} chamado(s)\n`;
+    .forEach(([analista, qtd]) => {
+      conteudo += `${analista}: ${qtd} chamado(s)\n`;
     });
 
-  conteudo += "\n---------------------------------\n";
+  conteudo += "\n";
 
-  let lista = chamados;
-  if (tecnicoSelecionado !== "TODOS") {
-    conteudo += `Chamados do analista: ${tecnicoSelecionado}\n\n`;
-    lista = chamados.filter((c) => c.tecnico === tecnicoSelecionado);
-  } else {
-    conteudo += "Lista completa\n\n";
-  }
+  // Agrupa chamados por analista
+  const chamadosAgrupados = {};
 
-  lista.forEach((c) => {
-    conteudo += `ID: ${c.id} | Analista: ${c.tecnico} | Título: ${c.titulo} | Abertura: ${c.aberturaStr} | Em atendimento: ${c.diasEmAtendimento} dia(s) | Atraso: ${c.diasAtraso} dia(s)\n`;
+  chamados.forEach((c) => {
+    if (!chamadosAgrupados[c.tecnico]) {
+      chamadosAgrupados[c.tecnico] = [];
+    }
+    chamadosAgrupados[c.tecnico].push(c);
   });
 
-  const blob = new Blob([conteudo], { type: "text/plain;charset=utf-8;" });
+  // Ordena analistas por nome
+  Object.keys(chamadosAgrupados)
+    .sort()
+    .forEach((analista) => {
+      conteudo += "---------------------------------\n";
+      conteudo += `Chamados do analista: ${analista}\n\n`;
+
+      chamadosAgrupados[analista].forEach((c) => {
+        conteudo +=
+          `ID: ${c.id} | ` +
+          `Analista: ${c.tecnico} | ` +
+          `Título: ${c.titulo} | ` +
+          `Abertura: ${c.aberturaStr} | ` +
+          `Em atendimento: ${c.diasEmAtendimento} dia(s) | ` +
+          `Atraso: ${c.diasAtraso} dia(s)\n`;
+      });
+
+      conteudo += "\n";
+    });
+
+  const blob = new Blob([conteudo], { type: "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
 
   const a = document.createElement("a");
   a.href = url;
-  a.download = "chamados_pendentes.txt";
+  a.download = "chamados_por_analista.txt";
   a.click();
+
   URL.revokeObjectURL(url);
 }
