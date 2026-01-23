@@ -14,10 +14,11 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="container">
+    <header>
+       <div class="container">
       <img src="img/org-15743-45886e6a.png" alt="Logo coelho" />
       <h1>Extrator GLPI (CSV → TXT)</h1>
       <p class="sub">Coleta: <b>ID</b> e <b>Atribuído - Analista</b></p>
@@ -28,14 +29,15 @@
         <button onclick="lerCSV()">Importar CSV</button>
         <button onclick="exportarTXT()">Exportar TXT</button>
       </div>
-
-      <div class="filter">
+       <div class="filter">
         <label for="filtroTecnico"><b>Filtrar por Analista:</b></label>
         <select id="filtroTecnico" onchange="filtrarPorTecnico()">
           <option value="TODOS">Todos</option>
         </select>
       </div>
 
+    </header>
+   <section>
       <table id="tabela">
         <thead>
           <tr>
@@ -44,12 +46,15 @@
             <th>Título</th>
             <th>Prazo (dias)</th>
             <th>Dias em atraso</th>
+            <th>Em atendimento</th>
           </tr>
         </thead>
         <tbody></tbody>
       </table>
     </div>
+   </section>
+      
 
-    <script src="script.js"></script>
+    <script src="script/script.js"></script>
   </body>
 </html>

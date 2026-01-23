@@ -288,13 +288,12 @@ function atualizarTabelaChamados() {
     const tr = document.createElement("tr");
 
     const atrasoStyle =
-      item.diasAtraso > 0 ? "font-weight:bold; color:#b91c1c;" : "";
+      item.diasAtraso > 0 ? "font-weight:bold; color:#fff;" : "";
 
     tr.innerHTML = `
       <td>${item.id}</td>
       <td>${item.tecnico}</td>
-      <td>${item.titulo}</td>
-      <td>${item.aberturaStr}</td>
+      <td>${item.titulo}</td>   
       <td>${item.prazoDias}</td>
       <td>${item.diasEmAtendimento}</td>
       <td style="${atrasoStyle}">${item.diasAtraso}</td>
@@ -319,12 +318,12 @@ function atualizarTabelaTecnicos() {
   );
 
   let html = `
-    <h2>Quantidade de chamados por Analista</h2>
-    <table style="width:100%; border-collapse:collapse;">
-      <thead style="background:#e5e7eb;">
-        <tr>
-          <th style="padding:10px; border:1px solid #d1d5db;">Técnico</th>
-          <th style="padding:10px; border:1px solid #d1d5db;">Qtd</th>
+    <h2 style="display:flex; justify-content:center; flex-direction:column;  align-items: center"">Quantidade de chamados por Analista</h2>
+    <table style="width:100%; border-collapse:collapse; align-items: center; margin: 0 auto">
+      <thead style="background:#36363;">
+        <tr >
+          <th style="padding:10px; border:1px solid #444444;margin:10px">Analista</th>
+          <th style="padding:10px; border:1px solid #444444;margin:10px">Quantidade</th>
         </tr>
       </thead>
       <tbody>
@@ -332,9 +331,9 @@ function atualizarTabelaTecnicos() {
 
   listaOrdenada.forEach(([tec, qtd]) => {
     html += `
-      <tr>
-        <td style="padding:10px; border:1px solid #d1d5db;">${tec}</td>
-        <td style="padding:10px; border:1px solid #d1d5db;">${qtd}</td>
+      <tr style="margin:10px">
+        <td style="padding:10px; border:1px solid #444444;margin:10px">${tec}</td>
+        <td style="padding:10px; border:1px solid #444444;margin:10px">${qtd}</td>
       </tr>
     `;
   });

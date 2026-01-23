@@ -1,0 +1,30 @@
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #111111;
+  width: 100%;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  margin: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  padding: 0 35px;
+  background: #363636;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #636262;
+  text-align: left;
+}
+
+tbody tr:hover {
+  background: #4a4b4b;
+}
