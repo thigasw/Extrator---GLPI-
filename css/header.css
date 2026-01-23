@@ -1,33 +1,21 @@
-* {
-  box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-}
-
-body {
-  background: #0d0d0d;
-  margin: 0;
-  padding: 40px;
-}
-
 .container {
-  background: #ffffff;
- width: 100%;
-  margin: auto;
+  display: block;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #111111;
+  width: 100%;
   padding: 25px;
-  border-radius: 10px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
-
 img {
   margin: 10px auto;
   width: 200px;
-  height: 50px;
+  height: 60px;
 }
 
 h1 {
   font-family: "Montserrat", sans-serif;
-
+  color: var(--text-color);
   font-weight: 600;
   margin: 0 0 5px;
 }
@@ -36,12 +24,13 @@ h1 {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   margin: 0 0 20px;
-  color: #374151;
+  color: var(--text-color);
 }
 
 input[type="file"] {
+  font-family: "Montserrat", sans-serif;
   margin-bottom: 15px;
-  color: #d93d3d;
+  color: var(--button-primary-color);
 }
 
 .buttons {
@@ -53,7 +42,7 @@ input[type="file"] {
 button {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  background: #d93d3d;
+  background: var(--button-primary-color);
   color: #fff;
   border: none;
   padding: 10px 16px;
@@ -62,7 +51,7 @@ button {
 }
 
 button:hover {
-  background: #a63333;
+  background: var(--button-secondary-color);
 }
 
 .filter {
@@ -79,28 +68,13 @@ button:hover {
   font-weight: 600;
 }
 select {
-  background-color: #d93d3d;
+  background-color: var(--button-secondary-color);
+  color: var(--text-color);
   padding: 8px;
   border-radius: 6px;
-  border: 1px solid #a63333;
+  border: 1px solid var(--button-secondary-color);
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-thead {
-  background: #e5e7eb;
-}
-
-th,
-td {
-  padding: 10px;
-  border: 1px solid #d1d5db;
-  text-align: left;
-}
-
-tbody tr:hover {
-  background: #f9fafb;
+select:hover {
+  background-color: var(--button-primary-color);
 }
